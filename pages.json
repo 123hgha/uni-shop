@@ -26,18 +26,30 @@
       "navigationBarTitleText": "",
       "enablePullDownRefresh": false
     }
-
+  }],
+  "subPackages": [{
+    "root": "subpkg",
+    "pages": [{
+      "path": "goods_detail/goods_detail",
+      "style": {}
+    },
+    {
+      "path": "goods_list/goods_list",
+      "style": {}
+    }
+    ]
   }],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "丶的小超市",
-    "navigationBarBackgroundColor": "#C00000",
+    "navigationBarBackgroundColor": "#1296db",
     "backgroundColor": "#FFFFFF",
     "app-plus": {
       "background": "#000000"
     }
   },
   "tabBar": {
+    "selectedColor": "#1296db",
     "list": [{
         "pagePath": "pages/home/home",
         "text": "首页",

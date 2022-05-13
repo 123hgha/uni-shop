@@ -1,5 +1,10 @@
 <template>
   <view>
+    <!-- 使用自定义的搜索组件 -->
+    <view class="search-box">
+      <my-search @click="gotoSearch"></my-search>
+    </view>
+
     <!-- 轮播图区域 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <!-- 循环渲染轮播图的 item 项 -->
@@ -34,8 +39,10 @@
           </navigator>
           <!-- 右侧 4 个小图片的盒子 -->
           <view class="right-img-box">
-            <navigator class="right-img-item" v-for="(item2, i2) in item.product_list" :key="i2"  v-if="i2 !== 0"  :url="item2.url">
-              <image :src="item2.image_src" mode="widthFix" :style="{width: item2.image_width + 'rpx',height: item2.image_height + 'rpx'}"></image>
+            <navigator class="right-img-item" v-for="(item2, i2) in item.product_list" :key="i2" v-if="i2 !== 0"
+              :url="item2.url">
+              <image :src="item2.image_src" mode="widthFix"
+                :style="{width: item2.image_width + 'rpx',height: item2.image_height + 'rpx'}"></image>
             </navigator>
           </view>
         </view>
@@ -96,17 +103,17 @@
       // async getFloorList() {
       //   const { data: res } = await uni.$http.get('/api/public/v1/home/floordata')
       //   if (res.meta.status !== 200) return uni.$showMsg()
-      
+
       // 通过双层 forEach 循环，处理 URL 地址
-        // res.message.forEach(floor => {
-        //   floor.product_list.forEach(prod => {
-        //     prod.url = '/subpkg/goods_list/goods_list?' + prod.navigator_url.split('?')[1]
-        //   })
-        // })
-      
+      // res.message.forEach(floor => {
+      //   floor.product_list.forEach(prod => {
+      //     prod.url = '/subpkg/goods_list/goods_list?' + prod.navigator_url.split('?')[1]
+      //   })
+      // })
+
       //   this.floorList = res.message
       // },
-      
+
       // nav-item 项被点击时候的事件处理函数
       navClickHandler(item) {
         // 判断点击的是哪个 nav
@@ -115,6 +122,12 @@
             url: '/pages/cate/cate'
           })
         }
+      },
+      // 跳转到分包中的搜索页面
+      gotoSearch() {
+        uni.navigateTo({
+          url: '/subpkg/search/search'
+        })
       }
     }
   }
@@ -147,19 +160,31 @@
       text-align: center;
     }
   }
+
   .floor-title {
     height: 60rpx;
     width: 100%;
     display: flex;
   }
+
   .right-img-box {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: #ffffff;
   }
+
   .floor-img-box {
     display: flex;
     padding-left: 10rpx;
+  }
+
+  .search-box {
+    // 设置定位效果为“吸顶”
+    position: sticky;
+    // 吸顶的“位置”
+    top: 0;
+    // 提高层级，防止被轮播图覆盖
+    z-index: 999;
   }
 </style>

@@ -1,5 +1,8 @@
 <template>
   <view>
+    <!-- 使用自定义的搜索组件 -->
+    <my-search @click="gotoSearch"></my-search>
+
     <view class="scroll-view-container">
       <!-- 左侧的滚动视图区域 -->
       <scroll-view class="left-scroll-view" scroll-y :style="{height: wh + 'px'}">
@@ -10,7 +13,7 @@
         </block>
       </scroll-view>
       <!-- 右侧的滚动视图区域 -->
-      <scroll-view class="right-scroll-view" scroll-y :style="{height: wh + 'px'}"  :scroll-top="scrollTop">
+      <scroll-view class="right-scroll-view" scroll-y :style="{height: wh + 'px'}" :scroll-top="scrollTop">
         <view class="cate-lv2" v-for="(item2, i2) in cateLevel2" :key="i2">
           <!-- 二级分类的标题 -->
           <view class="cate-lv2-title">/ {{item2.cat_name}} /</view>
@@ -19,7 +22,7 @@
             <!-- 三级分类 Item 项 -->
             <view class="cate-lv3-item" v-for="(item3, i3) in item2.children" :key="i3" @click="gotoGoodsList(item3)">
               <!-- 图片 -->
-                <image :src="item3.cat_icon"></image>
+              <image :src="item3.cat_icon"></image>
               <!-- 文本 -->
               <text>{{item3.cat_name}}</text>
             </view>
@@ -55,7 +58,9 @@
       // 获取当前系统的信息
       const sysInfo = uni.getSystemInfoSync()
       // 为 wh 窗口可用高度动态赋值
-      this.wh = sysInfo.windowHeight
+      // this.wh = sysInfo.windowHeight
+      // 可用高度 = 屏幕高度 - navigationBar高度 - tabBar高度 - 自定义的search组件高度
+      this.wh = sysInfo.windowHeight - 50
       // 调用获取分类列表数据的方法
       // this.getCateList()
       this.cateList = leftView
@@ -81,7 +86,7 @@
         // 为二级分类列表重新赋值
         // this.cateLevel2 = this.cateList[i].children
         this.cateLevel2 = this.cateList[0].message[i].children
-        
+
         // 让 scrollTop 的值在 0 与 1 之间切换
         this.scrollTop = this.scrollTop === 0 ? 1 : 0
       },
@@ -89,6 +94,12 @@
       gotoGoodsList(item3) {
         uni.navigateTo({
           url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id
+        })
+      },
+      // 跳转到分包中的搜索页面
+      gotoSearch() {
+        uni.navigateTo({
+          url: '/subpkg/search/search'
         })
       }
     }

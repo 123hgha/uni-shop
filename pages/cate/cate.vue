@@ -94,6 +94,7 @@
       gotoGoodsList(item3) {
         uni.navigateTo({
           url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id
+          // url: '/subpkg/goods_list/goods_list'
         })
       },
       // 跳转到分包中的搜索页面

@@ -2,7 +2,7 @@
   <view class="goods-item">
     <!-- 商品左侧图片区域 -->
     <view class="goods-item-left">
-      <radio :checked="goods.goods_state" color="#C00000" v-if="showRadio" @click="radioClickHandler"></radio>
+      <radio :checked="goods.goods_state" color="#1296db" v-if="showRadio" @click="radioClickHandler"></radio>
       <image :src="goods.goods_small_logo || defaultPic" class="goods-pic"></image>
     </view>
     <!-- 商品右侧信息区域 -->
@@ -120,7 +120,7 @@
 
       .goods-price {
         font-size: 16px;
-        color: #c00000;
+        color: #1296db;
       }
     }
   }

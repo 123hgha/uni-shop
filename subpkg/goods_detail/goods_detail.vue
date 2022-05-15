@@ -62,7 +62,7 @@
         }, {
           icon: 'cart',
           text: '购物车',
-          info: 0
+          // info: 0
         }],
         // 右侧按钮组的配置对象
         buttonGroup: [{
@@ -165,7 +165,7 @@
             goods_state: true // 商品的勾选状态
             // this.goods_info[0].message
           }
-          console.log(goods);
+          // console.log(goods);
 
           // 3. 通过 this 调用映射过来的 addToCart 方法，把商品信息对象存储到购物车中
           this.addToCart(goods)
